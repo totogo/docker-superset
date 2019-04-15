@@ -63,7 +63,8 @@ RUN useradd -U -m superset && \
         werkzeug==0.14.1 && \
     # Fix certificate verification issue to connect Redshift in China
     pip install https://github.com/MicroCred/sqlalchemy-redshift/archive/master.zip && \
-    pip install https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip
+    # pip install https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip
+    pip install git+https://github.com/apache/incubator-superset.git#egg=superset
 
 # Configure Filesystem
 COPY superset /usr/local/bin
