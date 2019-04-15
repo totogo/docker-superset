@@ -1,7 +1,7 @@
 FROM python:3.6
 
 # Superset version
-ARG SUPERSET_VERSION=0.31.0rc18
+ARG SUPERSET_VERSION=master
 
 # Configure environment
 ENV GUNICORN_BIND=0.0.0.0:8088 \
@@ -62,8 +62,8 @@ RUN useradd -U -m superset && \
         sqlalchemy-clickhouse==0.1.5.post0 \
         werkzeug==0.14.1 && \
     # Fix certificate verification issue to connect Redshift in China
-    pip install git+https://github.com/MicroCred/sqlalchemy-redshift.git
-RUN pip install https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip
+    pip install https://github.com/MicroCred/sqlalchemy-redshift/archive/master.zip && \
+    pip install https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip
 
 # Configure Filesystem
 COPY superset /usr/local/bin
