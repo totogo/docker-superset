@@ -59,8 +59,9 @@ RUN useradd -U -m superset && \
         pymssql==2.1.3 \
         redis==2.10.5 \
         sqlalchemy-clickhouse==0.1.5.post0 \
-        sqlalchemy-redshift==0.7.1 \
         werkzeug==0.14.1 && \
+    # Fix certificate verification issue to connect Redshift in China
+    pip install git+https://github.com/MicroCred/sqlalchemy-redshift.git && \
     pip install superset==${SUPERSET_VERSION}
 
 # Configure Filesystem
