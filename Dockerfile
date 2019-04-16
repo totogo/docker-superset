@@ -1,7 +1,7 @@
 FROM python:3.6
 
 # Superset version
-ARG SUPERSET_VERSION=master
+ARG SUPERSET_VERSION=0.31.0rc1
 
 # Configure environment
 ENV GUNICORN_BIND=0.0.0.0:8088 \
@@ -64,7 +64,7 @@ RUN useradd -U -m superset && \
     # Fix certificate verification issue to connect Redshift in China
     pip install https://github.com/MicroCred/sqlalchemy-redshift/archive/master.zip && \
     # pip install https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip
-    pip install git+https://github.com/apache/incubator-superset.git#egg=apache-superset
+    pip install git+https://github.com/apache/incubator-superset.git@${SUPERSET_VERSION}#egg=apache-superset
 
 # Configure Filesystem
 COPY superset /usr/local/bin
